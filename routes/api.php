@@ -12,8 +12,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
   
 });
+
 Route::prefix('desafios')->group(function () {      
-    Route::get('/', [DesafioController::class, 'index']);            
+    Route::get('/all', [DesafioController::class, 'index']);            
     Route::get('/{id}', [DesafioController::class, 'indexId']);      
     Route::post('/', [DesafioController::class, 'store']);          
     Route::put('/{id}', [DesafioController::class, 'update']);       
