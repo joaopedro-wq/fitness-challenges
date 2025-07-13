@@ -17,6 +17,9 @@ class Desafio extends Model
         'dificuldade',
         'pontos_recompensa',
         'duracao_dias',
+        'url_foto',
+        'metodo_pontuacao',
+        'meta_pontuacao',
     ];
 
     public function usuarioDesafios() {
