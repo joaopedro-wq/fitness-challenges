@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Desafio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class DesafioController extends Controller
 {
@@ -106,12 +107,19 @@ class DesafioController extends Controller
     }
 
     private function montarUrlFoto($desafio)
-    {
-        $desafio->url_foto = $desafio->url_foto
-            ? asset('storage/' . $desafio->url_foto)
-            : null;
-        return $desafio;
+{
+    if ($desafio->url_foto) {
+        // Se já começa com http, não faz nada
+        if (!Str::startsWith($desafio->url_foto, ['http://', 'https://'])) {
+            $desafio->url_foto = asset('storage/' . $desafio->url_foto);
+        }
+    } else {
+        $desafio->url_foto = null;
     }
+
+    return $desafio;
+}
+
     public function indexId($id)
     {
         $desafio = Desafio::findOrFail($id);
